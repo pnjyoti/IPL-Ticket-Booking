@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPL Ticket Booking</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <h1>IPL 2026 Ticket Booking</h1>
+
+</body>
+
+<form>
+
+   
+<h2>Book Your IPL Tickets</h2>
+
+<div class="form-row">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"
+           placeholder="Enter your name"
+           required minlength="3" maxlength="30"
+           pattern="[A-Za-z ]+"
+           title="Name should contain only letters and spaces">
+</div>
+
+<div class="form-row">
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email"
+           placeholder="Enter your email"
+           required
+           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com"
+           title="Please enter an email ending with .com">
+</div>
+
+<div class="form-row">
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone"
+           placeholder="Enter your phone number"
+           required minlength="10" maxlength="10"
+           pattern="[0-9]{10}"
+           title="Please enter exactly 10 digits">
+</div>
+
+<div class="form-row">
+    <label for="match">Select Match:</label>
+    <select id="match" name="match" required>
+        <option value="">-- Select a Match --</option>
+        <option value="RCB vs CSK">RCB vs CSK</option>
+        <option value="MI vs KKR">MI vs KKR</option>
+        <option value="CSK vs MI">CSK vs MI</option>
+    </select>
+</div>
+
+<div class="form-row">
+    <label for="stand">Select Stand Category:</label>
+    <select id="stand" name="stand" required>
+        <option value="">-- Select a Stand --</option>
+        <option value="General">General</option>
+        <option value="Premium">Premium</option>
+        <option value="VIP">VIP</option>
+    </select>
+</div>
+
+<div class="form-row">
+    <label for="tickets">Number of Tickets:</label>
+    <input type="number" id="tickets" name="tickets"
+           placeholder="Enter number of tickets"
+           required min="1" max="10">
+</div>
+
+<p>Seating Preference:</p>
+
+<div class="choice">
+    <input type="radio" id="boundary" name="preference"
+           value="Near Boundary" required>
+    <label for="boundary">Near Boundary</label>
+</div>
+
+<div class="choice">
+    <input type="radio" id="pavilion" name="preference"
+           value="Near Pavilion">
+    <label for="pavilion">Near Pavilion</label>
+</div>
+
+<div class="choice">
+    <input type="radio" id="none" name="preference"
+           value="No Preference">
+    <label for="none">No Preference</label>
+</div>
+
+<p>Additional Facilities:</p>
+
+<div class="choice">
+    <input type="checkbox" id="parking" name="facilities"
+           value="Parking">
+    <label for="parking">Parking</label>
+</div>
+
+<div class="choice">
+    <input type="checkbox" id="food" name="facilities"
+           value="Food">
+    <label for="food">Food and Beverages</label>
+</div>
+
+<div class="choice">
+    <input type="checkbox" id="lounge" name="facilities"
+           value="VIP Lounge">
+    <label for="lounge">VIP Lounge Access</label>
+</div>
+
+<div class="choice">
+    <input type="checkbox" id="wheelchair" name="facilities"
+           value="Wheelchair Assistance">
+    <label for="wheelchair">Wheelchair Assistance</label>
+</div>
+
+<br>
+<button type="submit">Book Ticket</button>
+<button type="reset">Reset</button>
+
+
+</form>
+
+</html>

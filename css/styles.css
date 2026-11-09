@@ -135,13 +135,59 @@ form {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-input, select {
+input:not([type="radio"]):not([type="checkbox"]),
+select {
     width: 80%;
     padding: 10px;
     margin: 8px 0;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
 }
+
+
+/* Horizontal alignment of form fields */
+.form-row {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.form-row label {
+    width: 20%;
+    text-align: left;
+}
+
+.form-row input,
+.form-row select {
+    width: 80%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Seating preference and additional facilities */
+form p {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.choice {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.choice input {
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.choice label {
+    text-align: left;
+}
+
 
 button {
     background-color: var(--primary);
@@ -172,3 +218,4 @@ h1 {
     margin-top: 50px;
     
 }
+
