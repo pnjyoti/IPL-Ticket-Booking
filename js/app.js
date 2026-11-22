@@ -51,3 +51,73 @@ bookButtons.forEach(function(button) {
     });
 
 });
+
+let matchSelect = document.getElementById("match");
+let standSelect = document.getElementById("stand");
+let quantityInput = document.getElementById("quantity");
+
+
+console.log(matchSelect.value);
+console.log(standSelect.value);
+console.log(quantityInput.value);
+
+
+matchSelect.addEventListener("change", function() {
+    console.log(matchSelect.value);
+});
+standSelect.addEventListener("change", function() {
+    console.log(standSelect.value);
+});
+
+quantityInput.addEventListener("change", function() {
+    console.log(quantityInput.value);
+});
+
+let ticketPrices = {
+    "RCB vs CSK": {
+        "General": 800,
+        "Premium": 1500,
+        "VIP": 3000
+    },
+    "MI vs KKR": {
+        "General": 900,
+        "Premium": 1600,
+        "VIP": 3500
+    },
+    "CSK vs MI": {
+        "General": 800,
+        "Premium": 1400,
+        "VIP": 3000
+    }
+};
+
+function calculateTotal() {
+    let match = matchSelect.value;
+    let stand = standSelect.value;
+    let quantity = Number(quantityInput.value);
+
+    if (match === "" || stand === "" || quantity === 0) {
+        return;
+    }
+
+    let price = ticketPrices[match][stand];
+    let total = price * quantity;
+
+    summaryMatch.textContent = match;
+    summaryStand.textContent = stand;
+    summaryPrice.textContent = "₹" + price;
+    summaryQuantity.textContent = quantity;
+    summaryTotal.textContent = "₹" + total;
+}
+
+
+let summaryMatch = document.getElementById("summaryMatch");
+let summaryStand = document.getElementById("summaryStand");
+let summaryPrice = document.getElementById("summaryPrice");
+let summaryQuantity = document.getElementById("summaryQuantity");
+let summaryTotal = document.getElementById("summaryTotal");
+
+
+matchSelect.addEventListener("change", calculateTotal);
+standSelect.addEventListener("change", calculateTotal);
+quantityInput.addEventListener("input", calculateTotal);
