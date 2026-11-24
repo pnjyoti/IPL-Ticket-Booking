@@ -121,3 +121,83 @@ let summaryTotal = document.getElementById("summaryTotal");
 matchSelect.addEventListener("change", calculateTotal);
 standSelect.addEventListener("change", calculateTotal);
 quantityInput.addEventListener("input", calculateTotal);
+
+
+//Grid/List Toggle
+
+let matchGrid = document.querySelector(".match-grid");
+let gridViewBtn = document.getElementById("gridViewBtn");
+let listViewBtn = document.getElementById("listViewBtn");
+
+
+gridViewBtn.addEventListener("click", function() {
+    matchGrid.classList.remove("list-view");
+    matchGrid.classList.add("grid-view");
+});
+
+listViewBtn.addEventListener("click", function() {
+    matchGrid.classList.remove("grid-view");
+    matchGrid.classList.add("list-view");
+});
+
+
+//  Team Filter
+
+let teamFilter = document.getElementById("team");
+let matchCards = document.querySelectorAll(".match-card");
+
+teamFilter.addEventListener("change", function() {
+    let selectedTeam = teamFilter.value;
+
+    matchCards.forEach(function(card) {
+        let matchName = card.querySelector("h4").textContent;
+
+        if (selectedTeam === "all" || matchName.includes(selectedTeam)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+
+
+//Hamburger Menu
+
+let menuToggle = document.getElementById("menuToggle");
+let navMenu = document.querySelector("nav ul");
+
+menuToggle.addEventListener("click", function() {
+    navMenu.classList.toggle("active");
+});
+
+navMenu.querySelectorAll("a").forEach(function(link) {
+
+    link.addEventListener("click", function(event) {
+
+        let target = link.getAttribute("href");
+
+        if (target.startsWith("#")) {
+            event.preventDefault();
+
+            let section = document.querySelector(target);
+
+            // Close the sidebar
+            navMenu.classList.remove("active");
+
+            // Scroll after the sidebar closes
+            setTimeout(function() {
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
+            }, 300);
+
+        } else {
+            // Close menu when navigating to another page
+            navMenu.classList.remove("active");
+        }
+
+    });
+
+});
