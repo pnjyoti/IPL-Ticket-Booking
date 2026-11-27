@@ -1,30 +1,52 @@
 
+import { useEffect, useState } from 'react'
+import { supabase } from '../supabase'
 import MatchCard from '../components/MatchCard'
 
 function Matches() {
-    const matches = [
-        {
-            id: 1,
-            team1: 'RCB',
-            team2: 'CSK',
-            date: '25 April 2027',
-            venue: 'Bengaluru'
-        },
-        {
-            id: 2,
-            team1: 'MI',
-            team2: 'KKR',
-            date: '26 April 2027',
-            venue: 'Mumbai'
-        },
-        {
-            id: 3,
-            team1: 'SRH',
-            team2: 'DC',
-            date: '27 April 2027',
-            venue: 'Hyderabad'
+    const [matches, setMatches] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        fetchMatches()
+
+        const channel = supabase
+            .channel('matches-realtime')
+            .on(
+                'postgres_changes',
+                {
+                    event: '*',
+                    schema: 'public',
+                    table: 'matches'
+                },
+                () => {
+                    fetchMatches()
+                }
+            )
+            .subscribe()
+
+        return () => {
+            supabase.removeChannel(channel)
         }
-    ]
+    }, [])
+
+    async function fetchMatches() {
+        const { data, error } = await supabase
+            .from('matches')
+            .select('*')
+
+        if (error) {
+            console.error('Supabase error:', error)
+        } else {
+            setMatches(data)
+        }
+
+        setLoading(false)
+    }
+
+    if (loading) {
+        return <p>Loading matches...</p>
+    }
 
     return (
         <section>
@@ -38,6 +60,7 @@ function Matches() {
                         team2={match.team2}
                         date={match.date}
                         venue={match.venue}
+                        availableSeats={match.available_seats}
                     />
                 ))}
             </div>
